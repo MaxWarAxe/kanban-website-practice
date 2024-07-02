@@ -12,7 +12,6 @@
     const kanbanStore = useKanbanStore()
     kanbanStore.init()
     
-    
     function startDrag(event,itemID,currentColumnID){
         event.target.classList.add('dragging')
         event.dataTransfer.dropEffect = 'move'
@@ -20,13 +19,13 @@
         event.dataTransfer.setData('itemID', itemID)
         event.dataTransfer.setData('columnID',currentColumnID)
     }
+
     function onDrop(event, columnID) {
         const itemID = event.dataTransfer.getData('itemID')
         const previousColumnID = event.dataTransfer.getData('columnID')
         kanbanStore.moveItem(itemID,previousColumnID, columnID)
        
     }    
-
     
 </script>
 
@@ -35,9 +34,12 @@
         <SidePanel></SidePanel>
         <main class="main-section">
             <div class="main-section__column-wraper">
-                <KanbanColumn @drop="onDrop($event,column.id)" :header="column.header" v-for="column in kanbanStore.columns">
-                    <KanbanCard draggable="true" @dragstart="startDrag($event,item.id,column.id)" v-for="item in column.items" :title="item.title" :content="item.content" :performer_name="item.performer_name" :key="item.id" ></KanbanCard>
+                <KanbanColumn @drop="onDrop($event,column.id)" :id="column.id" :header="column.header" v-for="column in kanbanStore.columns">
+                    <KanbanCard  draggable="true" @dragstart="startDrag($event,item.id,column.id)" v-for="item in column.items" :title="item.title" :content="item.content" :performer_name="item.performer_name" :key="item.id" ></KanbanCard>
                 </KanbanColumn>
+                <div @click="kanbanStore.addNewColumn()" class="main-section__add-column-button">
+                    ДОБАВИТЬ
+                </div>
             </div>
         </main>
         
@@ -72,5 +74,22 @@
         align-items: start;
         overflow-x: auto;
         scroll-behavior: smooth;
+    }
+    .main-section__add-column-button{
+        min-width: 400px;
+        height: 80px;
+        display: flex;
+        border: dashed;
+        border-radius: 10px;
+        color: var(--primary-text-color);
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        vertical-align: center;  
+        font-size: 32px;
+        font-weight: bold;  
+    }
+    .main-section__add-column-button:hover{
+        background-color: var(--primary-selection-color);
     }
 </style>

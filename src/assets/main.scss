@@ -6,6 +6,8 @@
 }
 *{
     box-sizing: border-box;
+    transition: 0.5s;
+    user-select: none;
 }
 body{
     font-family: 'inter';
@@ -14,7 +16,7 @@ body{
     padding: 0;
 
     scrollbar-width: thin;
-    scrollbar-color: var(--primary-selection-color) var(--primary-bg-color);
+    scrollbar-color: var(--primary-text-color) var(--primary-bg-color);
 }
 .dragging{
     opacity: 1;

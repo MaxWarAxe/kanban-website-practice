@@ -2,6 +2,8 @@ import { defineStore } from "pinia"
 import { ref } from 'vue'
 
 export const useKanbanStore = defineStore('kanban', () => { 
+    let columnId = ref(3)
+    let taskId = ref(3)
     let columns = ref([])
     let tasks = ref([])
 
@@ -32,5 +34,23 @@ export const useKanbanStore = defineStore('kanban', () => {
         addItemToColumn(itemID, newColumnID)
     }
 
-    return{columns,tasks,init,moveItem}
+    function addNewColumn(){
+        columns.value.push({id : ++columnId.value, header : 'Новая колонка', items : []})
+    }
+
+    function removeColumn(columnID){
+        var column = columns.value.find(column => column.id == columnID)
+        columns.value = columns.value.filter(function(column) {
+            return column.id != columnID;
+        });
+    }
+
+    function addNewItem(columnID){
+        var column = columns.value.find(column => column.id == columnID)
+        var newTask = {id : ++taskId.value, title : 'Новая задача', content : 'Новый текст', performer_name : 'Новый исполнитель'}
+        tasks.value.push(newTask)
+        column.items.push(newTask)
+    }
+
+    return{columns,tasks,init,moveItem,addNewColumn,removeColumn,addNewItem}
 })
