@@ -1,14 +1,18 @@
 <script setup>
-
+    let props = defineProps({
+        title : String,
+        content : String,
+        performer_name : String,
+    })
 </script>
 
 <template>
-    <div @dragstart="startDrag()" class="card-container" draggable="true">
+    <div class="card-container">
         <header class="card-container__header">
-            Draft onboarding documentation for design team.
+            {{ props.title }}
         </header>
         <main class="card-container__content">
-            Refer documentation templates from company wiki.
+            {{ props.content }}
         </main>
         <footer class="card-container__utility">
             <div class="card-container__profile">
@@ -16,7 +20,7 @@
                     
                 </div>
                 <div class="card-container__performer-name">
-                    Иван Иванов
+                    {{ props.performer_name }}
                 </div>
             </div>
         </footer>
@@ -35,6 +39,10 @@
         border-radius: 10px;
         box-shadow: 0px 5px 0px var(--primary-border-color);
         padding: 10px;
+    }
+    .card-container:hover{
+        background-color: var(--primary-selection-color);
+        cursor: grab;
     }
     .card-container__header{
         font-size: 18px;

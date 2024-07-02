@@ -1,18 +1,21 @@
 @import './base.scss';
 
 @font-face {
-  font-family: 'inter';
-  src: url('@/assets/fonts/Inter.ttf');
+    font-family: 'inter';
+    src: url('@/assets/fonts/Inter.ttf');
 }
 *{
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 body{
-  font-family: 'inter';
-  background-color: var(--primary-bg-color);
-  margin:0;
-  padding: 0;
+    font-family: 'inter';
+    background-color: var(--primary-bg-color);
+    margin:0;
+    padding: 0;
 
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary-selection-color) var(--primary-bg-color);
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-selection-color) var(--primary-bg-color);
+}
+.dragging{
+    opacity: 1;
 }

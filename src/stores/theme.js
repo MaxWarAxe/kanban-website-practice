@@ -1,15 +1,15 @@
-import {defineStore} from 'pinia'
-import {ref} from 'vue'
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const useThemeStore = defineStore('theme', () => {
     let dark = ref(false)
     let light = ref(false)
 
     function init(){
-        const state1 = localStorageGet()
-        if(state1 != undefined){
-            dark.value = state1.dark
-            light.value = state1.light
+        const state = localStorageGet()
+        if(state != undefined){
+            dark.value = state.dark
+            light.value = state.light
             console.log('storageUseed')
         }
         else{
@@ -30,9 +30,10 @@ export const useThemeStore = defineStore('theme', () => {
 
     function applyClasses(){
         document.body.classList.remove('light-theme', 'dark-theme');
-        if (dark) {
+        if (dark.value) {
             document.body.classList.add('dark-theme');
-        } else if (light) {
+        }
+        if (light.value) {
             document.body.classList.add('light-theme');
         }
     }

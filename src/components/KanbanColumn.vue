@@ -1,14 +1,19 @@
 <script setup>
     import KanbanCard from './KanbanCard.vue';
+    const props = defineProps({
+        header : String
+    })
+    
+ 
 </script>
 
 <template>
     <div class="column-container">
         <header class="column-container__header">
-            Текст заголовка
+            {{ props.header }}
         </header>
-        <main class="column-container__content">
-            <KanbanCard v-for="i in 10"></KanbanCard>
+        <main dropzone @dragover.prevent @dragenter.prevent @dragleave.prevent class="column-container__content">
+            <slot></slot>      
         </main>
     </div>
 </template>
@@ -17,7 +22,8 @@
     $border_radius : 10px;
 
     .column-container{
-        width: 400px;
+        min-width: 400px;
+    
         height: auto; 
         display: flex;
         flex-direction: column;
