@@ -6,7 +6,7 @@
     import KanbanColumn from './components/KanbanColumn.vue'
     import KanbanCard from './components/KanbanCard.vue'
     import SidePanel from './components/SidePanel.vue'
-    import TaskPanel from './components/TaskPanel.vue'
+    import ManagerPanel from './views/ManagerPanel.vue'
     
 
     const themeStore = useThemeStore()
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </main>
-        <TaskPanel v-if="taskPanelStore.visible"></TaskPanel>
+        <ManagerPanel v-if="taskPanelStore.visible"></ManagerPanel>
     </div>
     
     

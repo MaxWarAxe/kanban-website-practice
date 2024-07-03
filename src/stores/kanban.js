@@ -1,26 +1,35 @@
 import { defineStore } from "pinia"
 import { ref } from 'vue'
+import performersJSON from '../../public/performers.json'
+import tasksJSON from '../../public/tasks.json'
+import columnsJSON from '../../public/columns.json'
 
 export const useKanbanStore = defineStore('kanban', () => { 
     let columnId = ref(3)
     let taskId = ref(3)
+    let performerId = ref(3)
     let columns = ref([])
     let tasks = ref([])
     let performers = ref([])
     let dragging = ref(false)
 
     function init(){
-        performers.value = [{id : 1, name : 'Иван Жидков'},
+        // performers.value = performersJSON
+        // tasks.value = tasksJSON.map((task)=>{task.performer = performers.value.find(performer => performer.id == task.performerId); return task})
+        // columns.value = columnsJSON.forEach((column)=>)
+        performers.value = [{id : 1, name : 'Иван Иванчевич'},
                             {id : 2, name : 'Григорий Григориевич'},
                             {id : 3, name : 'Максим Максомов'}]
 
         tasks.value = [{id : 1, title : 'Задача по проге', content : '1. Сделай то 2. Сделай сё 3. Сделай это', performer: performers.value[0]},
                        {id : 2, title : 'Задача по тестированию', content : 'Напиши тесты по тому, по сему', performer : performers.value[1]},
-                       {id : 3, title : 'Вводим в эксплуатация', content : 'Текст какой-то Текст какой-то Текст какой-то Текст какой-то', performer : performers.value[2]}]
-
+                       {id : 3, title : 'Вводим в эксплуатацию', content : 'Текст какой-то Текст какой-то Текст какой-то Текст какой-то', performer : performers.value[2]}]
+        
+        
         columns.value = [{id: 1, header : 'Todo', items : [tasks.value[0]]},
                         {id : 2, header : 'Tests', items : [tasks.value[1]]},
                         {id : 3, header : 'Done', items : [tasks.value[2]]}]
+                           console.log(JSON.stringify(columns.value))      
     }
 
     function removeItemFromColumn(itemID, columnID){
@@ -93,6 +102,20 @@ export const useKanbanStore = defineStore('kanban', () => {
         return tasks.value.find(task => task.id == taskID)
     }
 
+    function addNewPerformer(name){
+        performers.value.push({id : ++performerId.value, name : name})
+    }
+
+    function removePerformer(performerID){
+        tasks.value.forEach(function(task){
+            if(task.performer != null && task.performer.id == performerID)
+                task.performer = undefined
+        })
+        performers.value = performers.value.filter(function(performer){
+            return performer.id != performerID;
+        })
+    }
+
     return{
         onRemoveDrop,
         dragging,
@@ -108,5 +131,7 @@ export const useKanbanStore = defineStore('kanban', () => {
         startDrag,
         onDropColumn,
         getTask,
+        addNewPerformer,
+        removePerformer
     }
 })

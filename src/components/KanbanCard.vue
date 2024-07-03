@@ -17,7 +17,8 @@
         <footer class="card-container__utility">
             <div class="card-container__profile">
                 <div class="card-container__picture">
-                    
+                    <div v-if="props.performer == undefined">?</div>
+                    <div v-else>{{props.performer.name[0]}}</div>
                 </div>
                 <div v-if="props.performer != undefined" class="card-container__performer-name">
                     {{ props.performer.name }}
@@ -69,6 +70,11 @@
     .card-container__picture{
         width: 40px;
         height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        color: var(--button-text-color);
         border-radius: 50%;
         background-color: var(--primary-icon-color);
     }

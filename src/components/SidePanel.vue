@@ -1,9 +1,12 @@
 <script setup>
     import { useThemeStore } from '@/stores/theme';
     import { useKanbanStore } from '@/stores/kanban';
+    import { useTaskPanelStore } from '@/stores/taskPanel';
 
     const kanbanStore = useKanbanStore()
     const themeStore = useThemeStore()
+    const taskPanel = useTaskPanelStore()
+
 </script>
 
 <template>
@@ -14,6 +17,14 @@
             </svg>
             
         </div>
+        <RouterLink to="/users/add">
+            <div @click="taskPanel.show()" class="side-panel-container__button">
+                <svg class="side-panel-container__icon" viewBox="0 0 24 24" width="32" height="32">
+                    <use href="@/assets/icons/themeIcon.svg#add-user-icon"></use>
+                </svg>
+            </div>
+        </RouterLink>
+        
         <div @drop="kanbanStore.onRemoveDrop($event)" dropzone @dragover.prevent @dragenter.prevent @dragleave.prevent v-if="kanbanStore.dragging" class="side-panel-container__button-delete">
             <svg class="side-panel-container__icon-delete" viewBox="0 0 24 24" width="32" height="32">
                 <use href="@/assets/icons/themeIcon.svg#trash-icon"></use>
