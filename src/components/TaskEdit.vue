@@ -20,15 +20,15 @@
 </script>
 
 <template>
-    <div  class="task-edit-container">
+    <div v-if="task != undefined" class="task-edit-container">
         <label class="task-edit-container__label" >Название</label>
         <textarea class="task-edit-container__text-area" type="text" v-model="task.title" placeholder="Напишите название задачи"></textarea>
         <label class="task-edit-container__label" >Содержание</label>
         <textarea class="task-edit-container__text-area" type="text" v-model="task.content" placeholder="Напишите содержание задачи"></textarea>
         <label class="task-edit-container__label">Исполнитель</label>
         <select class="task-edit-container__text-area" name="" id="" v-model="task.performer" placeholder="Работник">
-            <option class="task-edit-container__option" v-bind:value="performer">{{null}}</option>
-            <option class="task-edit-container__option" v-bind:value="performer" v-for="performer in kanbanStore.performers" :key="performer">{{ performer.name }}</option>
+            <option class="task-edit-container__option" :value="null"></option>
+            <option class="task-edit-container__option" :value="performer" v-for="performer in kanbanStore.performers" :key="performer">{{ performer.name }}</option>
         </select>
     </div>
 </template>
