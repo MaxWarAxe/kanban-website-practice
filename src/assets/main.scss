@@ -6,7 +6,7 @@
 }
 *{
     box-sizing: border-box;
-    transition: 0.5s;
+    //transition: 0.5s;
     user-select: none;
 }
 body{
@@ -14,7 +14,7 @@ body{
     background-color: var(--primary-bg-color);
     margin:0;
     padding: 0;
-
+    transition: 0.2s;
     scrollbar-width: thin;
     scrollbar-color: var(--primary-text-color) var(--primary-bg-color);
 }

@@ -6,19 +6,25 @@ export const useKanbanStore = defineStore('kanban', () => {
     let taskId = ref(3)
     let columns = ref([])
     let tasks = ref([])
+    let performers = ref([])
+    let dragging = ref(false)
 
     function init(){
-        tasks.value = [{id : 1, title : 'Задача по проге', content : '1. Сделай то 2. Сделай сё 3. Сделай это', performer_name : 'Иван Гошев'},
-                       {id : 2, title : 'Задача по тестированию', content : 'Напиши тесты по тому, по сему', performer_name : 'Григорий Ивашев'},
-                       {id : 3, title : 'Вводим в эксплуатация', content : 'Текст какой-то Текст какой-то Текст какой-то Текст какой-то', performer_name : 'Максим Максимович'}]
-        
+        performers.value = [{id : 1, name : 'Иван Жидков'},
+                            {id : 2, name : 'Григорий Григориевич'},
+                            {id : 3, name : 'Максим Максомов'}]
+
+        tasks.value = [{id : 1, title : 'Задача по проге', content : '1. Сделай то 2. Сделай сё 3. Сделай это', performer: performers.value[0]},
+                       {id : 2, title : 'Задача по тестированию', content : 'Напиши тесты по тому, по сему', performer : performers.value[1]},
+                       {id : 3, title : 'Вводим в эксплуатация', content : 'Текст какой-то Текст какой-то Текст какой-то Текст какой-то', performer : performers.value[2]}]
+
         columns.value = [{id: 1, header : 'Todo', items : [tasks.value[0]]},
                         {id : 2, header : 'Tests', items : [tasks.value[1]]},
                         {id : 3, header : 'Done', items : [tasks.value[2]]}]
     }
 
     function removeItemFromColumn(itemID, columnID){
-        var column = columns.value.find(column => column.id == columnID)
+    var column = columns.value.find(column => column.id == columnID)
         column.items = column.items.filter(function(item) {
             return item.id != itemID;
         });
@@ -47,10 +53,60 @@ export const useKanbanStore = defineStore('kanban', () => {
 
     function addNewItem(columnID){
         var column = columns.value.find(column => column.id == columnID)
-        var newTask = {id : ++taskId.value, title : 'Новая задача', content : 'Новый текст', performer_name : 'Новый исполнитель'}
+        var newTask = {id : ++taskId.value, title : 'Новая задача', content : 'Новый текст', performer : null}
         tasks.value.push(newTask)
         column.items.push(newTask)
     }
 
-    return{columns,tasks,init,moveItem,addNewColumn,removeColumn,addNewItem}
+    function startDrag(event,itemID,currentColumnID){
+        dragging.value = true
+        event.dataTransfer.dropEffect = 'move'
+        event.dataTransfer.effectAllowed = 'move'
+        event.dataTransfer.setData('itemID', itemID)
+        event.dataTransfer.setData('columnID',currentColumnID)
+    }
+
+    function onDropColumn(event, columnID) {
+        const itemID = event.dataTransfer.getData('itemID')
+        const previousColumnID = event.dataTransfer.getData('columnID')
+        moveItem(itemID,previousColumnID, columnID)
+    }    
+
+    function dragEnd(){
+        dragging.value = false
+    }
+
+    function removeTask(taskID, columnID){
+        removeItemFromColumn(taskID, columnID)
+        tasks.value = tasks.value.filter(function(task){
+            return task.id != taskID;
+        })
+    }
+
+    function onRemoveDrop(event){
+        const itemID = event.dataTransfer.getData('itemID')
+        const previousColumnID = event.dataTransfer.getData('columnID')
+        removeTask(itemID,previousColumnID)
+    }
+
+    function getTask(taskID){
+        return tasks.value.find(task => task.id == taskID)
+    }
+
+    return{
+        onRemoveDrop,
+        dragging,
+        dragEnd,
+        columns,
+        tasks,
+        performers,
+        init,
+        moveItem,
+        addNewColumn,
+        removeColumn,
+        addNewItem, 
+        startDrag,
+        onDropColumn,
+        getTask,
+    }
 })

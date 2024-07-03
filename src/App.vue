@@ -1,9 +1,12 @@
 <script setup>
-    import { useThemeStore } from './stores/theme';
-    import {useKanbanStore} from '@/stores/kanban'
-    import KanbanColumn from './components/KanbanColumn.vue';
-    import KanbanCard from './components/KanbanCard.vue';
-    import SidePanel from './components/SidePanel.vue';
+    import { useThemeStore } from '@/stores/theme'
+    import { useKanbanStore } from '@/stores/kanban'
+    import { useTaskPanelStore } from '@/stores/taskPanel'
+    import { ref } from 'vue'
+    import KanbanColumn from './components/KanbanColumn.vue'
+    import KanbanCard from './components/KanbanCard.vue'
+    import SidePanel from './components/SidePanel.vue'
+    import TaskPanel from './components/TaskPanel.vue'
     
 
     const themeStore = useThemeStore()
@@ -11,21 +14,12 @@
 
     const kanbanStore = useKanbanStore()
     kanbanStore.init()
-    
-    function startDrag(event,itemID,currentColumnID){
-        event.target.classList.add('dragging')
-        event.dataTransfer.dropEffect = 'move'
-        event.dataTransfer.effectAllowed = 'move'
-        event.dataTransfer.setData('itemID', itemID)
-        event.dataTransfer.setData('columnID',currentColumnID)
-    }
 
-    function onDrop(event, columnID) {
-        const itemID = event.dataTransfer.getData('itemID')
-        const previousColumnID = event.dataTransfer.getData('columnID')
-        kanbanStore.moveItem(itemID,previousColumnID, columnID)
-       
-    }    
+    const taskPanelStore = useTaskPanelStore()
+
+    function showTaskPanel(){
+        taskPanelStore.show()
+    }
     
 </script>
 
@@ -34,22 +28,26 @@
         <SidePanel></SidePanel>
         <main class="main-section">
             <div class="main-section__column-wraper">
-                <KanbanColumn @drop="onDrop($event,column.id)" :id="column.id" :header="column.header" v-for="column in kanbanStore.columns">
-                    <KanbanCard  draggable="true" @dragstart="startDrag($event,item.id,column.id)" v-for="item in column.items" :title="item.title" :content="item.content" :performer_name="item.performer_name" :key="item.id" ></KanbanCard>
+                <KanbanColumn @drop="kanbanStore.onDropColumn($event,column.id)" :id="column.id" v-model="column.header" v-for="column in kanbanStore.columns">
+                    <RouterLink class="router-link" :to="'/tasks/' + item.id" v-for="item in column.items" @click="showTaskPanel" draggable="true" @dragend="kanbanStore.dragEnd()" @dragstart="kanbanStore.startDrag($event,item.id,column.id)">
+                        <KanbanCard :title="item.title" :content="item.content" :performer="item.performer" :key="item.id"/>
+                    </RouterLink> 
                 </KanbanColumn>
                 <div @click="kanbanStore.addNewColumn()" class="main-section__add-column-button">
                     ДОБАВИТЬ
                 </div>
             </div>
         </main>
-        
+        <TaskPanel v-if="taskPanelStore.visible"></TaskPanel>
     </div>
     
     
 </template>
 
 <style>
-
+    .router-link{
+        text-decoration: none;
+    }
     .app{
         height: 100vh;
         width: 100vw;

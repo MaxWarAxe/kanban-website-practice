@@ -2,7 +2,7 @@
     let props = defineProps({
         title : String,
         content : String,
-        performer_name : String,
+        performer : Object,
     })
 </script>
 
@@ -19,8 +19,8 @@
                 <div class="card-container__picture">
                     
                 </div>
-                <div class="card-container__performer-name">
-                    {{ props.performer_name }}
+                <div v-if="props.performer != undefined" class="card-container__performer-name">
+                    {{ props.performer.name }}
                 </div>
             </div>
         </footer>
@@ -39,6 +39,7 @@
         border-radius: 10px;
         box-shadow: 0px 5px 0px var(--primary-border-color);
         padding: 10px;
+        transition: 0.2s;
     }
     .card-container:hover{
         background-color: var(--primary-selection-color);

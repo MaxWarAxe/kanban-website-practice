@@ -1,19 +1,22 @@
 <script setup>
+    import { watch } from 'vue';
     import KanbanCard from './KanbanCard.vue';
     import { useKanbanStore } from '@/stores/kanban';
+    const kanbanStore = useKanbanStore()
+    
     const props = defineProps({
         id : Number,
         header : String
     })
     
-    const kanbanStore = useKanbanStore()
-
+    let header = defineModel()
+    
 </script>
 
 <template>
     <div class="column-container">
         <header class="column-container__header">
-            <input class="column-container__header-text  column-container__header-input" placeholder="Без названия" :value="props.header"></input>
+            <input class="column-container__header-text  column-container__header-input" placeholder="Без названия" v-model="header"></input>
          
             <svg @click="kanbanStore.addNewItem(props.id)" class="column-container__icon" viewBox="0 0 24 24" width="32" height="32">
                 <use href="@/assets/icons/themeIcon.svg#plus-icon"></use>
