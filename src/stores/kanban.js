@@ -14,7 +14,6 @@ export const useKanbanStore = defineStore('kanban', () => {
     function init(){   
         columns.value = columnsJSON
         for(let i = 0; i < columns.value.length; i++){
-           
             for(let j = 0; j < columns.value[i].items.length; j++){
                 tasks.value.push(columns.value[i].items[j])
             }
@@ -29,7 +28,7 @@ export const useKanbanStore = defineStore('kanban', () => {
 
         columnId.value = Math.max(...columns.value.map(column => column.id))
         taskId.value = Math.max(...tasks.value.map(task => task.id))
-        performerId.value = Math.max(...performers.value.map(performer=>performerId))
+        performerId.value = Math.max(...performers.value.map(performer=>performer.id))
     }
 
     function removeItemFromColumn(itemID, columnID){
