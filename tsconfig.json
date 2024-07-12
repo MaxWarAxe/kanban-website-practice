@@ -1,0 +1,28 @@
+{ 
+    "compilerOptions": {
+        "paths": {
+            "@/*": ["./src/*"]
+        },
+        "resolveJsonModule": true,
+        "moduleResolution": "Node",
+        "allowImportingTsExtensions" : true,
+        "emitDeclarationOnly" : true,
+        "composite" : true,
+        "module": "ESNext",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "target": "ESNext",
+        "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable",
+            "scripthost"
+        ]
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.vue",
+        "tests/**/*.ts",
+    ],
+    "exclude": ["node_modules", "dist"]
+}

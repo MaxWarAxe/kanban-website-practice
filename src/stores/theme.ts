@@ -1,19 +1,18 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 
 export const useThemeStore = defineStore('theme', () => {
-    let dark = ref(false)
-    let light = ref(false)
+    const dark : Ref<boolean> = ref(true)
+    const light : Ref<boolean> = ref(false)
 
     function init(){
         const state = localStorageGet()
         if(state != undefined){
             dark.value = state.dark
             light.value = state.light
-            console.log('storageUseed')
         }
         else{
-            let darkColorScheme = window.matchMedia('(prefers-color-scheme: dark)')
+            const darkColorScheme = window.matchMedia('(prefers-color-scheme: dark)')
             dark.value = darkColorScheme.matches
             light.value = !darkColorScheme.matches
             localStorageSave()

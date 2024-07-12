@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`KanbanCard > Коректно рендерится 1`] = `
+"<div data-v-45fb8c1e="" class="card-container">
+  <header data-v-45fb8c1e="" class="card-container__header"></header>
+  <main data-v-45fb8c1e="" class="card-container__content"></main>
+  <footer data-v-45fb8c1e="" class="card-container__utility">
+    <div data-v-45fb8c1e="" class="card-container__profile">
+      <div data-v-45fb8c1e="" class="card-container__picture" data-test="performer-icon">
+        <div data-v-45fb8c1e=""> ? </div>
+      </div>
+      <!--v-if-->
+    </div>
+  </footer>
+</div>"
+`;

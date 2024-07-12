@@ -1,8 +1,8 @@
 import { defineStore } from "pinia"
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 
 export const useTaskPanelStore = defineStore('taskPanel', () => { 
-    let visible = ref(false)
+    const visible : Ref<boolean> = ref(false)
     
     function show(){
         visible.value = true
@@ -12,5 +12,9 @@ export const useTaskPanelStore = defineStore('taskPanel', () => {
         visible.value = false
     }
 
-    return {visible,show,close}
+    return {
+        visible,
+        show,
+        close
+    }
 })

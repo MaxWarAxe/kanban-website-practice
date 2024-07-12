@@ -1,12 +1,12 @@
 import './assets/main.scss'
 
-import { createApp } from 'vue'
+import { App, createApp } from 'vue'
 import { createPinia } from 'pinia'
 
-import App from './App.vue'
+import AppComponent from '@/App.vue'
 import router from './router'
 
-const app = createApp(App)
+const app : App<Element> = createApp(AppComponent)
 
 app.use(createPinia())
 app.use(router)
