@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import ManagerPanel from '@/views/ManagerPanel.vue'
 import { vueRouter } from 'storybook-vue3-router' 
 import PerformerEdit from '@/components/PerformerEdit.vue'
+import TaskEdit from '@/components/TaskEdit.vue'
 import '@/assets/base.scss';
 import '@/assets/main.scss';
 
