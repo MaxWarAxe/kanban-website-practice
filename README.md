@@ -1,28 +1,38 @@
-# sportmaster lab todo
+# Практика в SM lab
 
-This template should help get you started developing with Vue 3 in Vite.
+Проект создан на Vue3 и Vite
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## Запустить проект
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Скомпилировать для hot-reload разработки
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Запустить Storybook
+
+```sh
+npm run storybook
+```
+
+### Запустить тесты
+
+```sh
+npm run test
+```
+
+### Запустить eslint
+
+```sh
+npm run lint
+```
+
+### Скомпилировать для production
 
 ```sh
 npm run build
