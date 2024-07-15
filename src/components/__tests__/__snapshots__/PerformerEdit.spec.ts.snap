@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PerformerEdit tests > Коректно рендерится 1`] = `
+"<div data-v-26fb1e78="" class="performer-container">
+  <div data-v-26fb1e78="" class="performer-container__new-performer-wrapper"><input data-v-26fb1e78="" class="performer-container__input" type="text" data-test="name-input"><svg data-v-26fb1e78="" class="performer-container__icon" viewBox="0 0 24 24" width="32" height="32" data-test="add-button">
+      <use data-v-26fb1e78="" href="/src/assets/icons/themeIcon.svg#add-user-icon"></use>
+    </svg></div>
+</div>"
+`;

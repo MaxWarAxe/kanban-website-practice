@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`KanbanColumn tests > Коректно рендерится 1`] = `
+"<div data-v-5fec18df="" class="column-container">
+  <header data-v-5fec18df="" class="column-container__header"><input data-v-5fec18df="" class="column-container__header-text column-container__header-input" placeholder="Без названия" data-test="header-input"><svg data-v-5fec18df="" class="column-container__icon" viewBox="0 0 24 24" width="32" height="32" data-test="add-button">
+      <use data-v-5fec18df="" href="/src/assets/icons/themeIcon.svg#plus-icon"></use>
+    </svg><svg data-v-5fec18df="" class="column-container__icon" viewBox="0 0 24 24" width="32" height="32" data-test="remove-button">
+      <use data-v-5fec18df="" href="/src/assets/icons/themeIcon.svg#trash-icon"></use>
+    </svg></header>
+  <main data-v-5fec18df="" dropzone="" class="column-container__content"></main>
+</div>"
+`;

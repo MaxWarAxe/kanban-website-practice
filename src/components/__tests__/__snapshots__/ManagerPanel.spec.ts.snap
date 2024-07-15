@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ManagerPanel tests > Корректно рендерится 1`] = `
+"<div data-v-39bc4ccd="" class="task-panel">
+  <div data-v-39bc4ccd="" class="task-panel__cross-button" data-test="cross-button"><svg data-v-39bc4ccd="" class="task-panel__cross-icon" viewBox="0 0 24 24" width="32" height="32">
+      <use data-v-39bc4ccd="" href="/src/assets/icons/themeIcon.svg#cross-icon"></use>
+    </svg></div>
+  <!---->
+</div>"
+`;

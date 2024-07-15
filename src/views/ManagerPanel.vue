@@ -10,6 +10,7 @@
     <div
       class="task-panel__cross-button"
       @click="taskPanelStore.close()"
+      data-test="cross-button"
     >
       <svg
         class="task-panel__cross-icon"

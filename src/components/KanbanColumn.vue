@@ -8,7 +8,6 @@
     }>()
 
     let headerName : ModelRef<string> = defineModel()
-    let q : number = 1
 </script>
 
 <template>
@@ -23,6 +22,7 @@
                   class="column-container__icon" 
                   viewBox="0 0 24 24" width="32" 
                   height="32"
+                  data-test="add-button"
                   >
                 <use href="@/assets/icons/themeIcon.svg#plus-icon"/>
             </svg>
@@ -31,6 +31,7 @@
                  viewBox="0 0 24 24" 
                  width="32" 
                  height="32"
+                 data-test="remove-button"
                  >
                 <use href="@/assets/icons/themeIcon.svg#trash-icon"/>
             </svg>
@@ -41,7 +42,7 @@
               @dragleave.prevent 
               class="column-container__content"
               >
-            <slot></slot>      
+            <slot data-test="task"></slot>      
         </main>
     </div>
 </template>

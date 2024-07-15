@@ -1,9 +1,9 @@
 <script setup lang="ts">
     import { useKanbanStore } from '@/stores/kanban'
-    import { ref } from 'vue'
+    import { ref, Ref } from 'vue'
 
     const kanbanStore = useKanbanStore()
-    let newPerformerName = ref('')
+    let newPerformerName: Ref<string> = ref('')
 </script>
 
 <template>
@@ -13,6 +13,7 @@
         class="performer-container__input" 
         type="text" 
         v-model="newPerformerName"
+        data-test="name-input"
       >
       <svg
         @click="kanbanStore.addNewPerformer(newPerformerName)"
@@ -20,6 +21,7 @@
         viewBox="0 0 24 24" 
         width="32" 
         height="32"
+        data-test="add-button"
       >
         <use href="@/assets/icons/themeIcon.svg#add-user-icon" />
       </svg>
@@ -46,6 +48,7 @@
         class="performer-container__performer-name" 
         v-model="performer.name" 
         type="text"
+        data-test="performer-change-input"
       >
     </div>
   </div>

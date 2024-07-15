@@ -28,9 +28,9 @@ export const useKanbanStore = defineStore('kanban', () => {
                 performers.value.push(tasks.value[i].performer)
             }   
         }
-        columnId.value = Math.max(...columns.value.map((column : Column) => column.id))
-        taskId.value = Math.max(...tasks.value.map((task : Task) => task.id))
-        performerId.value = Math.max(...performers.value.map((performer : Performer) => performer.id))
+        columnId.value = Math.max(...columns.value.map((column : Column) => column.id)) + 1
+        taskId.value = Math.max(...tasks.value.map((task : Task) => task.id)) + 1
+        performerId.value = Math.max(...performers.value.map((performer : Performer) => performer.id)) + 1
     }
 
     function removeItemFromColumn(itemID : number, columnID : number) {
@@ -65,7 +65,7 @@ export const useKanbanStore = defineStore('kanban', () => {
         column.items.push(newTask)
     }
 
-    function startDrag(event : DragEvent, itemID : number,currentColumnID : number) {
+    function startDrag(event : DragEvent, itemID : number, currentColumnID : number) {
         dragging.value = true
         event.dataTransfer.dropEffect = 'move'
         event.dataTransfer.effectAllowed = 'move'
@@ -127,6 +127,9 @@ export const useKanbanStore = defineStore('kanban', () => {
         onDropColumn,
         getTask,
         addNewPerformer,
-        removePerformer
+        removePerformer,
+        removeItemFromColumn,
+        addItemToColumn,
+        removeTask,
     }
 })

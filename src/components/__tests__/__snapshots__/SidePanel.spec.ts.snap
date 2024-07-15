@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Sidepanel test > Корректно рендерится 1`] = `
+"<aside data-v-c09d4a3a="" class="side-panel-container">
+  <div data-v-c09d4a3a="" class="side-panel-container__button" data-test="toggle-theme-button"><svg data-v-c09d4a3a="" class="side-panel-container__icon" viewBox="0 0 24 24" width="32" height="32">
+      <use data-v-c09d4a3a="" href="/src/assets/icons/themeIcon.svg#theme-icon"></use>
+    </svg></div>
+  <routerlink data-v-c09d4a3a="" to="/users/add">
+    <div data-v-c09d4a3a="" class="side-panel-container__button" data-test="add-user-button"><svg data-v-c09d4a3a="" class="side-panel-container__icon" viewBox="0 0 24 24" width="32" height="32">
+        <use data-v-c09d4a3a="" href="/src/assets/icons/themeIcon.svg#add-user-icon"></use>
+      </svg></div>
+  </routerlink>
+  <!--v-if-->
+</aside>"
+`;

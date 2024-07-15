@@ -15,24 +15,26 @@
 <template>
     <aside class="side-panel-container">
         <div @click="themeStore.toggleTheme()" 
-             class="side-panel-container__button">
+             class="side-panel-container__button"
+             data-test="toggle-theme-button">
             <svg class="side-panel-container__icon" 
                  viewBox="0 0 24 24" 
                  width="32" 
                  height="32"
-                 >
+            >
                 <use href="@/assets/icons/themeIcon.svg#theme-icon"></use>
             </svg>
         </div>
         <RouterLink to="/users/add">
             <div @click="taskPanel.show()" 
                  class="side-panel-container__button"
-                 >
+                 data-test="add-user-button"
+            >
                 <svg class="side-panel-container__icon" 
                      viewBox="0 0 24 24" 
                      width="32" 
                      height="32"
-                     >
+                >
                     <use href="@/assets/icons/themeIcon.svg#add-user-icon"></use>
                 </svg>
             </div>
@@ -44,7 +46,9 @@
              @dragenter.prevent 
              @dragleave.prevent 
              v-if="props.dragging" 
-             class="side-panel-container__button-delete">
+             class="side-panel-container__button-delete"
+             data-test="trash-can"
+        >
             <svg class="side-panel-container__icon-delete" 
                  viewBox="0 0 24 24" 
                  width="32" 
